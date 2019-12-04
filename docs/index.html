@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Your name here" />
+
+
+<title>I have the best titles</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-binding-2.0.2/leaflet.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 41px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+
+.section h2 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h3 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h4 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h5 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h6 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R Data Science Final Project</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">I have the best titles</h1>
+<h3 class="subtitle"><em>Subtitle here if desired</em></h3>
+<h4 class="author"><em>Your name here</em></h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>My really awesome and complete introduction will go here.</p>
+</div>
+<div id="materials-and-methods" class="section level1">
+<h1>Materials and methods</h1>
+<p>Narrative and most code will go here. Describe what you are doing and show how to do it (with code).</p>
+<p>You can do bullets like this:</p>
+<ul>
+<li>The first most important thing</li>
+<li>The second most important thing</li>
+<li>The third most important thing</li>
+</ul>
+<p>You can do numbers like this:</p>
+<ol style="list-style-type: decimal">
+<li>The first most important thing</li>
+<li>The second most important thing</li>
+<li>The third most important thing</li>
+</ol>
+<p>See <a href="http://rmarkdown.rstudio.com/">http://rmarkdown.rstudio.com/</a> for all the amazing things you can do.</p>
+<p>Here’s my first code chunk.</p>
+<pre class="r"><code>1+2</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>Load any required packages in a code chunk (you may need to install some packages):</p>
+<pre class="r"><code>library(tidyverse)
+library(leaflet)
+library(kableExtra)
+knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling</code></pre>
+<div id="download-and-clean-all-required-data" class="section level2">
+<h2>Download and clean all required data</h2>
+<pre class="r"><code>n=20
+data=data.frame(x=runif(n,-180,180),
+                y=runif(n,-60,60),
+                size = runif(n, 5, 20),
+                category = factor(
+                  sample(letters[1:5], n, replace = TRUE)
+                  ),
+                value = rnorm(n))</code></pre>
+<pre class="r"><code>data %&gt;% 
+  slice(1:10) %&gt;% #show only 1:n rows
+  kable(digits=2,align=&quot;c&quot;)%&gt;% #make table and round to two digits
+  kable_styling(bootstrap_options = 
+                  c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;)) #apply other formatting</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+x
+</th>
+<th style="text-align:center;">
+y
+</th>
+<th style="text-align:center;">
+size
+</th>
+<th style="text-align:center;">
+category
+</th>
+<th style="text-align:center;">
+value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+158.70
+</td>
+<td style="text-align:center;">
+-41.82
+</td>
+<td style="text-align:center;">
+12.77
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+-0.46
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+59.72
+</td>
+<td style="text-align:center;">
+15.31
+</td>
+<td style="text-align:center;">
+17.87
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+-1.82
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+22.61
+</td>
+<td style="text-align:center;">
+37.19
+</td>
+<td style="text-align:center;">
+8.40
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+-0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+122.86
+</td>
+<td style="text-align:center;">
+-17.89
+</td>
+<td style="text-align:center;">
+10.20
+</td>
+<td style="text-align:center;">
+e
+</td>
+<td style="text-align:center;">
+-0.69
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+165.04
+</td>
+<td style="text-align:center;">
+49.86
+</td>
+<td style="text-align:center;">
+14.37
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+0.43
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4.25
+</td>
+<td style="text-align:center;">
+24.63
+</td>
+<td style="text-align:center;">
+17.35
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+0.65
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+-34.13
+</td>
+<td style="text-align:center;">
+3.60
+</td>
+<td style="text-align:center;">
+7.08
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+0.38
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+-95.72
+</td>
+<td style="text-align:center;">
+-12.88
+</td>
+<td style="text-align:center;">
+15.47
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+-0.62
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+-173.19
+</td>
+<td style="text-align:center;">
+-1.37
+</td>
+<td style="text-align:center;">
+19.01
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+84.98
+</td>
+<td style="text-align:center;">
+-48.48
+</td>
+<td style="text-align:center;">
+16.37
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;">
+-0.33
+</td>
+</tr>
+</tbody>
+</table>
+<p>Add any additional processing steps here.</p>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<p>Show tables, plots, etc. and describe them.</p>
+<pre class="r"><code>m &lt;- leaflet(data) %&gt;% 
+  addTiles() %&gt;% 
+  addCircleMarkers(~x, ~y, radius = ~size,color = ~as.factor(category)) %&gt;% 
+  addPopups(~x[2], ~y[2], &quot;Random popup&quot;)
+m  # a map with the default OSM tile layer</code></pre>
+<div class="figure">
+<div id="htmlwidget-2473f113b9766b5de4c1" style="width:576px;height:288px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2473f113b9766b5de4c1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[-41.8151120748371,15.3097580652684,37.1916253119707,-17.8912120498717,49.8552715871483,24.6312835626304,3.60358413308859,-12.8789869789034,-1.36579111218452,-48.4807443525642,-44.8202972766012,-43.5930757317692,-4.30096674710512,-50.5340411793441,-42.3739703558385,2.78018457815051,-8.18880759179592,-22.9464221745729,5.88221482001245,-52.1135577466339],[158.70033044368,59.7233701497316,22.6092912163585,122.860936895013,165.044875089079,4.24524921923876,-34.1341844480485,-95.7183726411313,-173.18754600361,84.9791598692536,141.659223837778,-20.3005500510335,-19.4418368954211,-176.139032039791,-86.0762012936175,74.1712688002735,114.900661222637,78.4156878758222,-157.632678318769,-125.788284642622],[12.7652051276527,17.8651983989403,8.40164216002449,10.2011958567891,14.3727393099107,17.3541855299845,7.08010265603662,15.4665091377683,19.0111634065397,16.369258898776,18.8303388736676,6.99646001448855,6.67872244375758,11.7765560024418,6.58924973453395,16.7211275477894,10.9316493710503,16.0916101548355,7.96068782918155,9.8122151196003],null,null,{"interactive":true,"className":"","stroke":true,"color":["a","b","a","e","c","a","a","c","a","d","a","e","c","d","a","e","e","e","a","a"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["a","b","a","e","c","a","a","c","a","d","a","e","c","d","a","e","e","e","a","a"],"fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPopups","args":[15.3097580652684,59.7233701497316,"Random popup",null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]}],"limits":{"lat":[-52.1135577466339,49.8552715871483],"lng":[-176.139032039791,165.044875089079]}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Map of completely random data
+</p>
+</div>
+<pre class="r"><code>data %&gt;% 
+  ggplot(aes(x=x,y=y,col=category))+
+  geom_point()</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<p>What have you learned? Are there any broader implications?</p>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+</div>
+
+<!-- give the footer some space -->
+<br/>
+<br/>
+
+<footer id="site-footer">
+  <div id="footer1">
+  This website is a project for Adam Wilson's <a href="https://wilsonlab.io/GEO511"><i> Spatial Data Science (GEO511) </i></a>Course at the University at Buffalo
+  </div>
+  <div id="footer2">
+  <a rel="license" property="http://creativecommons.org/ns#license"
+  href="http://creativecommons.org/licenses/by/4.0/" ><img src="img/cc-by.svg" alt="cc-by"/></a> 
+  </div>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>
