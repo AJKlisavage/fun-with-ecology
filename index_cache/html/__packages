@@ -10,3 +10,12 @@ stringr
 forcats
 leaflet
 kableExtra
+sp
+raster
+spocc
+RColorBrewer
+knitr
+sf
+plotly
+leaflet.extras
+htmlwidgets
