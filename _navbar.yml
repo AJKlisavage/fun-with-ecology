@@ -2,7 +2,7 @@ title: "Fun With Ecology"
 type: inverse
 left:
   - text: "Home"
-    href: Index.html
+    href: index.html
     
   - text: "Woodcock"
     href: Woodcock.html
