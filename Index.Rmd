@@ -112,6 +112,7 @@ map1
 ### Environmental Space Plots
 
 ```{r plot}
+
 g<-ggplot(data=WCUSclim, aes(x=tmax, y=pmax, alpha=0.2))+
   geom_point()+
   ggtitle("Range of the American Woodcock")+
@@ -121,6 +122,7 @@ g<-ggplot(data=WCUSclim, aes(x=tmax, y=pmax, alpha=0.2))+
 
 
 g
+
 ```
 
 
