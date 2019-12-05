@@ -30,7 +30,7 @@ library(htmlwidgets)
 ```
 
 
-This project pulls species distribution data from R package [spocc](https://cran.r-project.org/web/packages/spocc/spocc.pdf) and extracts [world climate data](http://worldclim.org/version2) via [Raster](https://cran.r-project.org/web/packages/raster/index.html)::[getData](https://www.rdocumentation.org/packages/raster/versions/3.0-7/topics/getData). Interactive maps are created in  [Leaflet](https://rstudio.github.io/leaflet/).
+This project pulls species distribution data from R package [spocc](https://cran.r-project.org/web/packages/spocc/spocc.pdf) and  extracts [world climate data](http://worldclim.org/version2) via [Raster](https://cran.r-project.org/web/packages/raster/index.html)::[getData](https://www.rdocumentation.org/packages/raster/versions/3.0-7/topics/getData). Interactive maps are created in  [Leaflet](https://rstudio.github.io/leaflet/).
 
 ### Downloading Woodcock Data
 spocc::occ is used to fetch occurrence data from Global Biodiversity Information Facility, or [GBIF](https://www.gbif.org/).
