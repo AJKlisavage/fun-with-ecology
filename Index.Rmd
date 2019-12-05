@@ -1,5 +1,5 @@
 ---
-title: "American Woodcock"
+title: "Fun with Ecology!"
 author: "Amanda Klisavage"
 date: "12/4/2019"
 output: html_document
@@ -9,6 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE, cache=TRUE)
 ```
 
-## American Woodcock, *Scolopax minor*
+[Invasive Insect Tracker](https://geo511-2019.github.io/2019-geo511-project-AJKlisavage/)
+
+
+[American Woodcock](/Woodcock.html)
 
 
