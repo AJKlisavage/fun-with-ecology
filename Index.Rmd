@@ -10,6 +10,6 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE, cache=TRUE)
 [Invasive Insect Tracker](https://geo511-2019.github.io/2019-geo511-project-AJKlisavage/), a project for Adam Wilson's [Spatial Data Science (GEO511)](http://wilsonlab.io/GEO511/) Course at the University at Buffalo
 
 
-[American Woodcock](/Woodcock.html)
+[American Woodcock](https://ajklisavage.github.io/fun-with-ecology/Woodcock.html)
 
 
